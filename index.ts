@@ -5,7 +5,7 @@ type Params = {
   logger?: Function;
 };
 
-export function createStorage(
+export function createStorage<T>(
   key: string,
   { type = "localStorage", logger }: Params = {}
 ) {
@@ -22,11 +22,11 @@ export function createStorage(
       logger?.(`× ${key}`);
       delete storage[key];
     },
-    set: (value: any) => {
+    set: (value: T) => {
       logger?.(`▶️ ${key}`, value);
       storage[key] = JSON.stringify({ value });
     },
-    get: () => {
+    get: (): T => {
       try {
         const value = JSON.parse(storage[key] ?? "{}").value;
         logger?.(`◀️ ${key}`, value);
