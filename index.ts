@@ -1,9 +1,13 @@
 import storageAvailable from "storage-available";
 
-export const storage = (
+type Params = {
+  type?: "localStorage" | "sessionStorage";
+  logger?: Function;
+};
+
+export const createStorage = (
   key: string,
-  type: "localStorage" | "sessionStorage" = "localStorage",
-  log: Function
+  { type = "localStorage", logger }: Params = {}
 ) => {
   const hasStorage = storageAvailable(type);
   type IStorage = { [key: string]: string };
@@ -15,17 +19,17 @@ export const storage = (
 
   return {
     remove: () => {
-      log?.(`× ${key}`);
+      logger?.(`× ${key}`);
       delete storage[key];
     },
     set: (value: any) => {
-      log?.(`▶️ ${key}`, value);
+      logger?.(`▶️ ${key}`, value);
       storage[key] = JSON.stringify({ value });
     },
     get: () => {
       try {
         const value = JSON.parse(storage[key] ?? "{}").value;
-        log?.(`◀️ ${key}`, value);
+        logger?.(`◀️ ${key}`, value);
         return value;
       } catch (error) {
         throw new Error(`Can't parse value from "${type}.${key}".`);
