@@ -24,11 +24,11 @@ export function createStorage<T>(
     },
     set: (value: T) => {
       logger?.(`▶️ ${key}`, value);
-      storage[key] = JSON.stringify({ value });
+      storage[key] = JSON.stringify([value]);
     },
     get: (): T => {
       try {
-        const value = JSON.parse(storage[key] ?? "{}").value;
+        const value = JSON.parse(storage[key] ?? "[]")[0];
         logger?.(`◀️ ${key}`, value);
         return value;
       } catch (error) {
