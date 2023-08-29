@@ -5,10 +5,10 @@ type Params = {
   logger?: Function;
 };
 
-export const createStorage = (
+export function createStorage(
   key: string,
   { type = "localStorage", logger }: Params = {}
-) => {
+) {
   const hasStorage = storageAvailable(type);
   type IStorage = { [key: string]: string };
   const storage: IStorage = hasStorage ? window[type] : {};
@@ -36,4 +36,4 @@ export const createStorage = (
       }
     },
   };
-};
+}

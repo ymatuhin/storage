@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "keywords": [],
-  "author": "",
+  "author": "ymatuhin",
   "license": "ISC",
   "dependencies": {
     "storage-available": "^1.1.0"

@@ -6,7 +6,17 @@ This package makes it easy to use localStorage and sessionStorage in your projec
 
 ## Installation
 
-Run `npm install ymatuhin/storage --save`, for pnpm use `pnpm add ymatuhin/storage`
+Npm users:
+
+```bash
+npm install ymatuhin/storage --save
+```
+
+pnpm users:
+
+```bash
+pnpm add ymatuhin/storage
+```
 
 ## How to use
 
